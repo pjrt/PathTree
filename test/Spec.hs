@@ -51,7 +51,6 @@ prop_pathExistance =
           cutInHalf l = let half = length l `div` 2 in take half l
 
 
-    prop_existance :: Property
     prop_existance =
       forAll (listOf1 nonEmptyPaths) $ \paths ->
         let tr = fromPaths paths
@@ -63,6 +62,9 @@ prop_pathExistance =
 -- order in which the tree is built from the path will be the same
 -- other the tree had before. Semantically speaking, however, the tree
 -- doesn't change.
+--
+-- I could make the equality if the tree be order independent on
+-- sibling nodes, but that sounds like work :\
 prop_identity :: LCRSTree AlphaChar Int -> Property
 prop_identity tree = (fromPaths . toPaths) tree === tree
 
@@ -86,5 +88,6 @@ instance Arbitrary AlphaChar where
 
 
 
+-- NOTE: the list of paths can still be empty!
 nonEmptyPaths :: Gen ([AlphaChar], Int)
 nonEmptyPaths = arbitrary `suchThat` (\(p, _) -> not (null p))
