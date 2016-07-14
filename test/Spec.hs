@@ -4,7 +4,8 @@ import Test.QuickCheck
 import Data.List (foldl')
 import Control.Arrow (first)
 import Control.Monad (liftM2)
-import LCRSTree
+import Data.LCRSTree
+import qualified Data.LCRSTree.Internals as I
 
 import Test.Framework
 import Test.Framework.Providers.QuickCheck2
@@ -87,7 +88,7 @@ instance (Eq n, Arbitrary n, Arbitrary a) => Arbitrary (LCRSTree n a) where
   arbitrary = do
     top <- arbitrary
     cs <- listOf1 arbitrary `suchThat` (\v -> length v > 4)
-    return $ foldl' (flip insert) Empty $ map (first ((:) top)) cs
+    return $ foldl' (flip insert) I.Empty $ map (first ((:) top)) cs
 
 
 -- | A smaller set of characters (a-zA-Z)
