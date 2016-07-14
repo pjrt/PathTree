@@ -19,16 +19,15 @@ mapNodes f (Leaf a s) = Leaf a (mapNodes f s)
 mapNodes f (Node n c s) = Node (f n) (mapNodes f c) (mapNodes f s)
 
 fromPath :: ([n], a) -> LCRSTree n a
-fromPath ([], _) = Empty
+fromPath ([], a) = Leaf a Empty
 fromPath ([l], a) = Node l (Leaf a Empty) Empty
 fromPath (h:t, a) = Node h (fromPath (t, a)) Empty
 
 insert :: (Eq n) => ([n], a) -> LCRSTree n a -> LCRSTree n a
 insert t Empty = fromPath t
-
 insert ([], a) t =
   case t of
-    Empty  -> Leaf a Empty -- insert
+    Empty  -> Leaf a Empty
     Leaf a' s -> Leaf a (Leaf a' s)
     Node n c s -> Node n c (insert ([], a) s)
 insert (h:t, a) l@(Leaf _ _) = Node h (insert (t, a) Empty) l
