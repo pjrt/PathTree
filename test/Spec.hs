@@ -109,7 +109,6 @@ prop_pathExistance :: Test
 prop_pathExistance =
   testGroup "Path integrity"
     [ testProperty "paths should exist in a tree they make" prop_existance
-    , testProperty "pathExists should consider partial paths" prop_partial
     , testProperty "countPathExistances should return n for n non-uniquily inserted paths" prop_cpeNonUnique
     , testProperty "countPathExistances should return 1 for n uniquily inserted paths" prop_cpeUnique
     ]
@@ -117,14 +116,6 @@ prop_pathExistance =
   where
     nonZero :: Gen Int
     nonZero = arbitrary `suchThat` (>0)
-    prop_partial =
-      forAll (listOf1 nonEmptyPath) $ \paths ->
-        let tr = fromPaths paths
-            flatPaths = map cutInHalf paths
-        in conjoin $ map (`pathExistsE` tr) flatPaths
-        where
-          cutInHalf l = let half = length l `div` 2 in take half l
-
 
     prop_existance =
       forAll (listOf1 nonEmptyPath) $ \paths ->

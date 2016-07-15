@@ -45,18 +45,6 @@ lcrsDepth = depth 0
           rDepth = depth i s
       in max lDepth rDepth
 
--- | Given a path, determine if it exists. Partial paths that match
--- return "True".
-pathExists :: Eq n => [n] -> LCRSTree n -> Bool
-pathExists _ Empty = False
-pathExists [] _ = True
-pathExists (p:ps) (Leaf n s)
-  | p == n = True
-  | otherwise = pathExists (p:ps) s
-pathExists (p:ps) (Node n c s)
-  | p == n = pathExists ps c
-  | otherwise = pathExists (p:ps) s
-
 -- | Convert a 'Tree' into a 'LCRSTree'
 fromRoseTree :: Tree n -> LCRSTree n
 fromRoseTree t = mkWithS t []

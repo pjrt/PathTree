@@ -22,6 +22,7 @@ module Data.PathTree
 , fromPathsWith
 , fromPathsReplace
 , toPaths
+, pathExists
 ) where
 
 import Data.List (foldl')
@@ -102,3 +103,21 @@ toPaths = trackPath []
     trackPath ns (Node n' c' s') =
       let newPath = ns ++ [n']
       in  trackPath newPath c' ++ trackPath ns s'
+
+-- | Given a path, determine if it exists fully. For a path to "exists fully"
+-- means that it ends on a level that contains a leaf.
+pathExists :: Eq n => [n] -> LCRSTree n -> Bool
+pathExists _ Empty = False
+pathExists paths (Leaf n s) =
+  case paths of
+    [] -> False
+    [p] -> if n == p then True
+                     else pathExists [p] s
+    (p:ps) -> if p == n then pathExists ps s
+                        else pathExists (p:ps) s
+pathExists paths (Node n c s) =
+  case paths of
+    [] -> False
+    [p] -> pathExists [p] s
+    (p:ps) -> if p == n then pathExists ps c
+                        else pathExists (p:ps) s

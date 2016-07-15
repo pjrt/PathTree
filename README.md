@@ -24,7 +24,6 @@ Which would be turned into (in Rose tree view):
 
 ![Rose Tree view][5]
 
-
 A [Left-Children-Right-Siblings tree][1] ([LCRSTree][2]) is a tree that
 represents a multi-way tree (aka, a Rose Tree) in a binary-tree format. It is
 the underlying implementation of [PathTree][3].
