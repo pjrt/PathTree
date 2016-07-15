@@ -13,8 +13,7 @@ module Data.LCRSTree where
 
 -- Do this in order to avoid unused imports in GHC 7.10 and over without
 -- needing cpp
-import Prelude hiding (Foldable)
-import Data.Foldable (Foldable(..))
+import Data.Foldable as F
 
 import Data.Tree (Tree)
 import qualified Data.Tree as T
@@ -33,10 +32,10 @@ instance Functor LCRSTree where
 
 instance Foldable LCRSTree where
   foldr _ z Empty = z
-  foldr f z (Leaf n s) = foldr f (f n z) s
+  foldr f z (Leaf n s) = F.foldr f (f n z) s
   foldr f z (Node n c s) =
-    let v = foldr f (f n z) c
-    in foldr f v s
+    let v = F.foldr f (f n z) c
+    in F.foldr f v s
 
 -- | Return the depth of the tree. This means the depth of the longest
 -- branch
