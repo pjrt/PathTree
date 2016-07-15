@@ -11,6 +11,11 @@
 -------------------------------------------------------------------------------
 module Data.LCRSTree where
 
+-- Do this in order to avoid unused imports in GHC 7.10 and over without
+-- needing cpp
+import Prelude hiding (Foldable)
+import Data.Foldable (Foldable(..))
+
 import Data.Tree (Tree)
 import qualified Data.Tree as T
 
