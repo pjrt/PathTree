@@ -92,7 +92,7 @@ fromPathsReplace :: Eq n => [[n]] -> PathTree n
 fromPathsReplace = fromPathsWith const
 
 -- | Returns all paths from the root node(s).
--- Note that `toPaths . fromPaths` may NOT return the same tree back due to
+-- Note that @toPaths . fromPaths@ may NOT return the same tree back due to
 -- some reordering of siblings.
 toPaths :: PathTree n -> [[n]]
 toPaths = trackPath []

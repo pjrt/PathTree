@@ -73,7 +73,8 @@ fromRoseTree t = mkWithS t []
 
 -- | Convert a 'LCRSTree' into a 'Tree'
 --
--- This function fails if a non-top 'Node' is passed.
+-- This function fails if a non-top 'Node' is passed. A non-top node is a node
+-- @Node n c s@ where @s /= Empty@.
 toRoseTree :: LCRSTree n -> Tree n
 toRoseTree (Node topN topC Empty) = T.Node topN (collectS topC)
   where
