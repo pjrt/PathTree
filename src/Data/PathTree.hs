@@ -111,8 +111,7 @@ pathExists _ Empty = False
 pathExists paths (Leaf n s) =
   case paths of
     [] -> False
-    [p] -> if n == p then True
-                     else pathExists [p] s
+    [p] -> n == p || pathExists [p] s
     (p:ps) -> if p == n then pathExists ps s
                         else pathExists (p:ps) s
 pathExists paths (Node n c s) =

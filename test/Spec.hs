@@ -192,7 +192,7 @@ instance Show AlphaChar where
 instance Arbitrary AlphaChar where
   arbitrary =
     let es = elements $ ['A'..'Z'] ++ ['a'..'z']
-    in AlphaChar <$> es
+    in fmap AlphaChar es
 
 
 zipM = liftM2 (,)
