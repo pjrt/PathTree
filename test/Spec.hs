@@ -84,7 +84,7 @@ prop_insert =
       forAll (zipM3 nonEmptyPath nonEmptyPath nonEmptyPath) $ \(root, p1, p2) ->
         let paths = [root ++ p1, root ++ p2]
             lenOfInter = lenMin p1 p2
-            tree = foldl' (flip insertReplace) Empty paths
+            tree = foldl' (flip insert) Empty paths
             actual = nodeCount tree
             expectedNumOfLeaf = 2
             expectedNumOfNode = lenOfInter - expectedNumOfLeaf + length root

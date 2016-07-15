@@ -1,13 +1,19 @@
-name:                LCRSTree
+name:                PathTree
 version:             0.1.0.0
-synopsis:            A Left-Children-Right-Siblings Tree
+synopsis:            A tree used to merge and maintain paths
 description:
-    A Left-Children-Right-Siblings tree is a tree that represents a multi-way
-    tree (aka, a Rose Tree) in a binary-tree format.
+    This package contains two modules: "Data.LCRSTree" and "Data.PathTree".
+    A 'PathTree' is a tree used to build unified paths from some node. This
+    means being able to merge multiple paths, that may overlap at the root, in
+    a sensible way. The module comes with a set of functions to add paths.
+
+    A Left-Children-Right-Siblings tree ('LCRSTree') is a tree that represents
+    a multi-way tree (aka, a Rose Tree) in a binary-tree format. It is the
+    underlying implementation of 'PathTree'.
 
     <https://en.wikipedia.org/wiki/Left-child_right-sibling_binary_tree>
 
-homepage:            https://github.com/pjrt/LCRSTree#readme
+homepage:            https://github.com/pjrt/PathTree#readme
 license:             BSD3
 license-file:        LICENSE
 author:              Pedro Rodriguez Tavarez
@@ -27,12 +33,12 @@ library
   ghc-options:         -Wall
   default-language:    Haskell2010
 
-test-suite LCRSTree-test
+test-suite PathTree-test
   type:                exitcode-stdio-1.0
   hs-source-dirs:      test
   main-is:             Spec.hs
   build-depends:       base
-                     , LCRSTree
+                     , PathTree
                      , QuickCheck
                      , test-framework
                      , test-framework-quickcheck2
@@ -41,4 +47,4 @@ test-suite LCRSTree-test
 
 source-repository head
   type:     git
-  location: https://github.com/pjrt/LCRSTree
+  location: https://github.com/pjrt/PathTree
