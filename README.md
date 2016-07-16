@@ -1,5 +1,7 @@
 ### PathTree
 
+[![Build Status](https://travis-ci.org/pjrt/PathTree.svg?branch=master)](https://travis-ci.org/pjrt/PathTree)
+
 This package contains two modules: [Data.LCRSTree][2] and [Data.PathTree][3].
 
 A `PathTree` is a tree used to build unified paths from some node. This
