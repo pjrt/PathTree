@@ -1,5 +1,5 @@
 name:                PathTree
-version:             0.1.0.0
+version:             0.1.1.0
 synopsis:            A tree used to merge and maintain paths
 description:
     This package contains two modules: "Data.LCRSTree" and "Data.PathTree".
